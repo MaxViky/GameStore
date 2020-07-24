@@ -1,0 +1,36 @@
+{% extends 'default.html' %}
+{% block title %} Game list {% endblock %}
+
+{% block content %}
+<style>
+   .purple { background: #8351fe; }
+  </style>
+<div class="container" style="background-color: #8351fe; margin-top: 100px;">
+   <table>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Publisher</th>
+            <th>Developer</th>
+            <th>Rating</th>
+            <th>Release</th>
+        </tr>
+        {% for game in games %}
+        <tr>
+            <td>{{ game.name }}</td>
+            <td>{{ game.category }}</td>
+            {% if game.price == 0.0 %}
+                <td> Free </td>
+            {% else %}
+                <td>${{ game.price }}</td>
+            {% endif %}
+            <td>{{ game.publisher }}</td>
+            <td>{{ game.developer }}</td>
+            <td>{{ game.rating }}</td>
+            <td>{{ game.release }}</td>
+        </tr>
+        {% endfor %}
+</table>
+</div>
+{% endblock %}
