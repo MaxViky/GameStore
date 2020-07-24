@@ -9,6 +9,7 @@ class loginForm(forms.Form):
 
 
 class regForms(forms.ModelForm):
+
     password1 = forms.CharField(label='Password', required=False, widget=PasswordInput())
     password2 = forms.CharField(label='Repeat the password', required=False, widget=PasswordInput())
 
