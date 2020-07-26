@@ -10,6 +10,57 @@
       body {
 background: url({% static 'media/bg.png' %});
 }
+ul {
+    list-style: none;
+    display: block;
+    margin:0px;
+    padding:0px;
+}
+ul:after {
+    display: block;
+    float: none;
+    content: ' ';
+    clear: both;
+}
+ul.menu > li {
+    float: left;
+    position: relative;
+}
+ul.menu > li > a {
+    display: block;
+    color: #fff;
+    padding: 10px;
+    text-decoration: none;
+    background-color: #8351fe;
+}
+ul.menu > li > a:hover {
+    background-color: #682cfc;
+}
+ul.submenu {
+    position: absolute;
+    width: 240px;
+    top: 37px;
+    left:0px;
+    display: none;
+    background-color: white;
+}
+ul.submenu > li {
+    display: block;
+}
+ul.submenu > li > a {
+    display: block;
+    text-decoration: none;
+    padding: 10px;
+    color: #ffffff;
+    background-color: #8351fe;
+}
+ul.submenu > li > a:hover {
+    background-color: #682cfc;
+    text-decoration: underline;
+}
+ul.menu > li:hover > ul.submenu {
+    display: block;
+}
     </style>
 </head>
     <body>
@@ -19,17 +70,34 @@ background: url({% static 'media/bg.png' %});
           <div class="collapse navbar-collapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active"><a class="nav-link" href="/"><font color="White">Home</font></a></li>
-                <li class="nav-item"> <a class="nav-link" href="/games"><font color="White">Games</font></a></li>
+                <li>
+                    <ul class="menu">
+                        <li><a href="/games"> Games </a>
+                                <ul class="submenu">
+                                    <li><a href=#>Catalog</a></li>
+                                    <li><a href=#>Popular</a></li>
+                                    <li><a href=#>New games</a></li>
+                                </ul>
+                        </li>
+                    </ul>
+                </li>
                 <li class="nav-item"> <a class="nav-link" href="#"><font color="White">My games </font></a></li>
-                <li class="nav-item"> <a class="nav-link" href="/profile"><font color="White">My profile </font></a></li>
-                <li class="nav-item"> <a class="nav-link" href="#"><font color="White">About us </font></a></li>
-                <li class="nav-item"> <a class="nav-link" style="margin-left: 450px;" href="/authorization/login"><font color="White"> Sign in</font></a></li>
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item"> <a class="nav-link" href="/profile"><font color="White">My profile </font></a></li>
+                {% else %}
+                    <li class="nav-item"> <a class="nav-link" href="/authorization/login"><font color="White">My profile </font></a></li>
+                {% endif %}
+                    <li class="nav-item"> <a class="nav-link" href="#"><font color="White">About us </font></a></li>
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item"> <a class="nav-link" style="margin-left: 400px;" href="/authorization/logout"><font color="White">{{ user }}(logout) </font></a></li>
+                    {% else %}
+                        <li class="nav-item"> <a class="nav-link" style="margin-left: 400px;" href="/authorization/login"><font color="White"> Sign in</font></a></li>
+                    {% endif %}
             </ul>
           </div>
         </nav>
 </div>
 {% block content %}
-
 {% endblock %}
     </body>
 </html>
