@@ -2,4 +2,4 @@ from django.shortcuts import render
 
 
 def myProfile(request):
-    pass
+    return render(request, 'profile.html',)

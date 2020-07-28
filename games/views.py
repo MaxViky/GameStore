@@ -1,7 +1,10 @@
 from django.shortcuts import render
-from main.models import Games
+from django.views.generic.base import View
+
+from main.models import Game
 
 
-def gamesPage(request):
-    games = Games.objects.all()
-    return render(request, 'gamesPage.html', {'games': games})
+class GameView(View):
+    def get(self, request):
+        games = Game.objects.all()
+        return render(request, 'gamesPage.html', {'game_list': games})

@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    url('^$', views.gamesPage),
+    url('^$', views.GameView.as_view()),
 ]

@@ -29,7 +29,7 @@ ul.menu > li {
 ul.menu > li > a {
     display: block;
     color: #fff;
-    padding: 10px;
+    padding: 8px;
     text-decoration: none;
     background-color: #8351fe;
 }
@@ -83,7 +83,16 @@ ul.menu > li:hover > ul.submenu {
                 </li>
                 <li class="nav-item"> <a class="nav-link" href="#"><font color="White">My games </font></a></li>
                 {% if request.user.is_authenticated %}
-                    <li class="nav-item"> <a class="nav-link" href="/profile"><font color="White">My profile </font></a></li>
+                    <li>
+                    <ul class="menu">
+                        <li><a href="/profile"> My profile </a>
+                                <ul class="submenu">
+                                    <li><a href=#>Edit</a></li>
+                                    <li><a href=#>Friends</a></li>
+                                </ul>
+                        </li>
+                    </ul>
+                    </li>
                 {% else %}
                     <li class="nav-item"> <a class="nav-link" href="/authorization/login"><font color="White">My profile </font></a></li>
                 {% endif %}
